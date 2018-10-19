@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html ng-app="TermApp" ng-controller="MainCtrl">
+<head>
+    <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- Your app title -->
+    <title>My App</title>
+    <!-- This template defaults to the iOS CSS theme. To support both iOS and material design themes, see the Framework7 Tutorial at the link below:
+        http://www.idangero.us/framework7/tutorials/maintain-both-ios-and-material-themes-in-single-app.html
+     -->
+    <link rel="stylesheet" href="lib/framework7/css/framework7.material.min.css">
+    <link rel="stylesheet" href="lib/framework7/css/framework7.material.rtl.min.css">
+
+    <link rel="stylesheet" href="lib/framework7/css/framework7.material.colors.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+    <!--<script type="text/javascript" src="js/jquery.validate.min.js"></script>-->
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <!--<script type="text/javascript" src="js/angular-validate.min.js"></script>-->
+</head>
+<body>
+    <!-- Status bar overlay for full screen mode (PhoneGap) -->
+    <div class="statusbar-overlay"></div>
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="panel panel-left panel-reveal">
+        <div class="content-block">
+            <p>Left panel content goes here</p>
+        </div>
+    </div>
+
+    <div class="views" id="MainAppId">
+        <!-- Your main view, should have "view-main" class -->
+        <div class="view view-main">
+
+            <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
+            <div class="pages navbar-through toolbar-through">
+                <!-- Page, "data-page" contains page name -->
+
+                <div class="page" data-page="index">
+
+                    <div class="navbar">
+                        <div class="navbar-inner">
+
+                            <!-- Search Bar -->
+                            <form data-search-list=".list-block-search" data-search-in=".item-title" style="background:#0067b8;" class="searchbar searchbar-init">
+                                <div class="searchbar-input">
+                                    <input id="FullSearch" type="search" placeholder="جستجو">
+                                    <a href="#" class="searchbar-clear"></a>
+                                </div><!--<a href="#" class="searchbar-cancel">Cancel</a>-->
+                            </form>
+                            <!-- Search Bar overlay -->
+                            <div class="searchbar-overlay"></div>
+                            <!--<a href="filter.html" class="link"><i class="fa fa-filter"></i></a>
+                            <a href="#" onclick="GetUnSeenAdvertising(); return true;" class="link"><i class="fa fa-bell" style="color:#67cc74;"><span id="NewAdvertisingCount" style="color:#ffffff;font-family: choramYekan;font-size: 11px;"> </span></i></a>-->
+
+                        </div>
+                    </div>
+
+
+                    <div  class="toolbar toolbar-bottom-md">
+                        <div class="toolbar-inner">
+                            <a href="registerTerm.html" class="link"><i class="fa fa-plus fa-lg"></i>&nbsp; ثبت اصطلاح جدید</a>
+                            <a href="category.html" class="link"> <i class="fa fa-bars fa-lg"></i> {{abc}}</a>
+                            <a href="setting.html" class="link"> <i class="fa fa-wrench fa-lg"></i>درباره ما</a>
+
+
+                            <!--<a href="#"  class="externallink link">ثبت نام</a>-->
+                            <!--<a href="http://www.google.com" class="link external button button-raised button-fill color-blue">Demo</a>-->
+
+                        </div>
+                    </div>
+
+
+
+
+                    <div>
+                        <!-- Floating Action Button -->
+                        <a ng-href='#' onclick="getScope('MainAppId').getItem();" class="floating-button" style="margin-bottom:60px;opacity: 0.8;">
+                            <!--<i class="icon icon-plus"></i>-->
+                            <i class="fa fa-refresh" style="font-size:20px"></i>
+                        </a>
+                    </div>
+
+
+                    <!-- Additional "hide-toolbar-on-scroll" class to hide toolbar on scroll automatically -->
+                    <div class="page-content" >
+
+
+                        <!-- This block will be displayed if nothing found -->
+                        <div class="content-block searchbar-not-found">
+                            <div class="content-block-inner">موردی یافت نشد</div>
+                        </div>
+                      
+                        <div class="list-block media-list list-block-search searchbar-found" style="margin-bottom: 70px;">
+                            <ul>
+                                <li class="card" ng-repeat="x in myData">
+                                    <a href="#" class="item-link item-content">
+                                        <!--<div class="item-media"><img src="" width="80" /></div>-->
+                                        <div class="item-inner">
+                                            <div class="item-title-row">
+                                                <div class="item-title">{{ x.Term  }}</div>
+                                                <div class="item-after"></div>
+                                            </div>
+                                            <div class="item-text">{{x.Translate }}</div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </div> 
+                        
+                          
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
+<script type="text/javascript" src="js/my-app.js"></script>
+
+
+<script>
+    // Code goes here
+
+ 
+</script>
