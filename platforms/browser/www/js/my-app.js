@@ -14,6 +14,14 @@ var mainView = myApp.addView('.view-main', {
     dynamicNavbar: true
 });
 
+var ToastOptions = {
+    // Callback gets called when toast is hidden
+    onHide: function () {
+        console.log('hidden');
+    },
+    duration: 3000 // Hide toast after 2 seconds
+};
+
 // Handle Cordova Device Ready Event
 $$(document).on('deviceready', function () {
     console.log("Device is ready!");
@@ -21,6 +29,7 @@ $$(document).on('deviceready', function () {
     getScope("MainAppId").getItem();
 
 });
+
 
 
 var TermApp = angular.module('TermApp', []);
@@ -35,6 +44,7 @@ function Compile(divId) {
 }
 
 TermApp.controller('MainCtrl', function ($scope, $compile, $http) {
+
     $scope.getItem = function () {
         myApp.showPreloader("لطفا کمی صبر کنید");
 
@@ -52,6 +62,45 @@ TermApp.controller('MainCtrl', function ($scope, $compile, $http) {
             myApp.hidePreloader();
         });
     }
+
+       $scope.term = "";
+       $scope.translate = "";
+       $scope.registerItem = function () {
+          // alert();
+       // $scope.term="hi"; 
+       // $scope.translate="hi2"; 
+
+     // var term=  angular.element('#term').val();
+      //var translate= angular.element('#translate').val();
+       //alert(term);
+        myApp.showPreloader("لطفا کمی صبر کنید");
+
+        $http({
+            method: "post",
+            url: "http://www.gholami3000.com/Translate/Term/Create",
+            // headers: {
+            //     'Content-Type': 'application/json',
+            // },
+            // headers: { 'Content-Type': application/json },
+             data:{term:$scope.term,translate:$scope.translate}
+        }).then(function mySucces(response) {
+            if(response.data.Success){
+                var toast = myApp.toast(response.data.Message, '', ToastOptions);
+                toast.show();
+                $scope.term = "";
+                $scope.translate = "";
+            }
+            else{
+                var toast = myApp.toast('لطفا دوباره سعی کنید', 'خطا', ToastOptions);
+                toast.show();
+            }
+            myApp.hidePreloader();
+        }, function myError(error) {
+            console.log(error);
+            myApp.hidePreloader();
+        });
+    }
+
     $scope.compileDOM = function ($el) {
         ($compile($el))($scope);
         $scope.$apply();
@@ -97,6 +146,8 @@ $$(document).on('pageInit', function (e) {
 
 // Option 2. Using live 'pageInit' event handlers for each page
 $$(document).on('pageInit', '.page[data-page="registerTerm"]', function (e) {
+    //کامپایل دوباره DOM
+    //کامپایل بر اساس id
     Compile('frmRegister');
 })
 
