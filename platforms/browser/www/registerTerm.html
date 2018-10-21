@@ -1,6 +1,8 @@
-﻿
+﻿<!-- We don't need a full layout in this file because this page will be parsed with Ajax. -->
+<!--<link rel="stylesheet" href="css/styles.css">-->
+<!-- Top Navbar-->
 <div class="pages">
-    <div class="page" data-page="registerTerm">
+    <div data-page="registerTerm" class="page">
         <div class="navbar">
             <div class="navbar-inner">
                 <div class="left">
@@ -9,60 +11,58 @@
                         <span>بازگشت</span>
                     </a>
                 </div>
-                <!--<div class="right sliding" style="margin:auto;">ثبت  </div>-->
-                <!--<div class="right">
-                    <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
-                </div>-->
             </div>
         </div>
-
-        <div class="page-content" style="margin-top:50px">
+        <div class="page-content">
             <div class="content-block">
+                <form style="margin-top: 45px;">
+                    <div class="list-block">
 
-                <div id="frmRegister">
-                    <!-- <p>متن : <input type="text" name="term" ng-model="term"></p>
-                    <p>ترجمه : <input type="text" name="translate" ng-model="translate"></p>
+                        <div id="frmRegister">
+                            <!-- <p>متن : <input type="text" name="term" ng-model="term"></p>
+                                <p>ترجمه : <input type="text" name="translate" ng-model="translate"></p>
+            
+                                <button  ng-click="registerItem()">ثبت</button> -->
+                            <ul style="list-style: none; ">
+                                <li class="align-top">
+                                    <div class="item-content">
+                                        <!--<div class="item-media"><i class="icon f7-icons">chat</i></div>-->
+                                        <div class="item-inner">
+                                            <div class="item-title label">متن :</div>
+                                            <div class="item-input">
+                                                <textarea style="background-color:#fff68e;width: 100%;height: 60px;"
+                                                    name="term" ng-model="term"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
 
-                    <button  ng-click="registerItem()">ثبت</button> -->
-<ul style="list-style: none; ">
-        <li class="align-top">
-                <div class="item-content">
-                    <!--<div class="item-media"><i class="icon f7-icons">chat</i></div>-->
-                    <div class="item-inner">
-                        <div class="item-title label">متن :</div>
-                        <div class="item-input">
-                            <textarea style="background-color:#fff68e;width: 100%;height: 60px;" name="term" ng-model="term"></textarea>
+                                <li class="align-top">
+                                    <div class="item-content">
+                                        <!--<div class="item-media"><i class="icon f7-icons">chat</i></div>-->
+                                        <div class="item-inner">
+                                            <div class="item-title label">ترجمه :</div>
+                                            <div class="item-input">
+                                                <textarea style="background-color:#fff68e;width: 100%;height: 60px;"
+                                                    name="translate" ng-model="translate"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+
+
+                            <a ng-click="registerItem()" class="button button-raised btn-ho-green">ثبت </a>
+
                         </div>
                     </div>
-                </div>
-            </li>
+                </form>
 
-            <li class="align-top">
-                    <div class="item-content">
-                        <!--<div class="item-media"><i class="icon f7-icons">chat</i></div>-->
-                        <div class="item-inner">
-                            <div class="item-title label">ترجمه  :</div>
-                            <div class="item-input">
-                                <textarea style="background-color:#fff68e;width: 100%;height: 60px;" name="translate" ng-model="translate"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
-</ul>
+                <!-- <a onclick="CreateAdvertising(); return false;" class="button button-raised btn-ho-blue">ثبت آگهی</a> -->
 
 
-                <a ng-click="registerItem()" class="button button-raised btn-ho-green">ثبت </a>
-
-
-
-                    
-                </div>            
-                
             </div>
         </div>
-
     </div>
 </div>
-
-

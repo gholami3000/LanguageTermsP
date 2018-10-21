@@ -1,21 +1,21 @@
 {
-  "prepare_queue": {
-    "installed": [],
-    "uninstalled": []
-  },
-  "config_munge": {
-    "files": {}
-  },
-  "installed_plugins": {
-    "cordova-plugin-console": {
-      "PACKAGE_NAME": "com.ho.LanguageTerms"
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
     },
-    "cordova-plugin-statusbar": {
-      "PACKAGE_NAME": "com.ho.LanguageTerms"
+    "config_munge": {
+        "files": {}
     },
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.ho.LanguageTerms"
-    }
-  },
-  "dependent_plugins": {}
+    "installed_plugins": {
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.ho.LanguageTerms"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.ho.LanguageTerms"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.ho.LanguageTerms"
+        }
+    },
+    "dependent_plugins": {}
 }
