@@ -8,13 +8,11 @@
     ],
     "plugins": {
       "cordova-plugin-whitelist": {},
-      "cordova-plugin-console": {},
       "cordova-plugin-statusbar": {}
     }
   },
   "dependencies": {
     "cordova-android": "6.1.2",
-    "cordova-plugin-console": "~1.0.1",
     "cordova-plugin-statusbar": "~1.0.1",
     "cordova-plugin-whitelist": "~1.2.0"
   }
