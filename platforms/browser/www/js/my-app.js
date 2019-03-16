@@ -82,7 +82,7 @@ TermApp.controller("MainCtrl", function($scope, $compile, $http) {
 
     $http({
       method: "GET",
-      url: "http://www.gholami3000.com/Translate/Api/TermList"
+      url: "http://www.ho3000.ir/mobile/Idioms//TermList"
       // headers: { 'Content-Type': undefined },
       //data:data
     }).then(
@@ -100,6 +100,7 @@ TermApp.controller("MainCtrl", function($scope, $compile, $http) {
 
   $scope.term = "";
   $scope.translate = "";
+  $scope.tag = "";
   $scope.registerItem = function() {
     // alert();
     // $scope.term="hi";
@@ -112,19 +113,22 @@ TermApp.controller("MainCtrl", function($scope, $compile, $http) {
 
     $http({
       method: "post",
-      url: "http://www.gholami3000.com/Translate/Term/Create",
+      url: "http://www.ho3000.ir/mobile/Idioms/Create",
       // headers: {
       //     'Content-Type': 'application/json',
       // },
       // headers: { 'Content-Type': application/json },
-      data: { term: $scope.term, translate: $scope.translate }
+      data: { term: $scope.term, translate: $scope.translate,tag: $scope.tag }
     }).then(
       function mySucces(response) {
-        if (response.data.Success) {
+//alert(response.data.Success);
+        if (response.data.Success==true) {
           var toast = myApp.toast(response.data.Message, "", ToastOptions);
           toast.show();
           $scope.term = "";
           $scope.translate = "";
+          $scope.tag = "";
+
         } else {
           var toast = myApp.toast("لطفا دوباره سعی کنید", "خطا", ToastOptions);
           toast.show();
